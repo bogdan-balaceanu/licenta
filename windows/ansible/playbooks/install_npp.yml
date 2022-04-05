@@ -1,0 +1,25 @@
+---
+- hosts: winhosts
+  gather_facts: no
+  tasks:
+  - name: Create a software repository directory on the user's Desktop
+    win_file: 
+      path: '%UserProfile%\Desktop\repository\'
+      state: directory
+
+  - name: Copy Notepad++ 7.8.8 installer on remote Windows machine
+    win_copy:
+      src: ../software_repository/npp-7.8.8.zip
+      dest: '%UserProfile%\Desktop\repository\'
+      remote_src: no
+
+  - name: Install Notepad++ 7.8.8
+    win_command: "{{ item }}"
+    with_items:
+      - cmd.exe /c 7z x %UserProfile%\Desktop\repository\npp-7.8.8.zip -o%UserProfile%\Desktop\repository\
+      - cmd.exe /c %UserProfile%\Desktop\repository\npp-7.8.8\npp.7.8.8.Installer.x64.exe /S
+
+  - name: Delete the software repository from user's Desktop
+    win_file: 
+      path: '%UserProfile%\Desktop\repository\'
+      state: absent

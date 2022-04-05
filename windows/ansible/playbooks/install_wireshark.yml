@@ -1,0 +1,25 @@
+---
+- hosts: winhosts
+  gather_facts: no
+  tasks:
+  - name: Create a software repository directory
+    win_file: 
+      path: '%UserProfile%\Desktop\repository'
+      state: directory
+
+  - name: Copy Wireshark 3.4.2 installer on remote Windows machine
+    win_copy:
+      src: ../software_repository/wireshark-3.4.2.zip
+      dest: '%UserProfile%\Desktop\repository\'
+      remote_src: no
+
+  - name: Install Wireshark 3.4.2
+    win_command: "{{ item }}"
+    with_items:
+      - cmd.exe /c 7z x %UserProfile%\Desktop\repository\wireshark-3.4.2.zip -o%UserProfile%\Desktop\repository\
+      - cmd.exe /c %UserProfile%\Desktop\repository\wireshark-3.4.2\Wireshark-win64-3.4.2.exe /NCRC /S /desktopicon=yes /quicklaunchicon=no /D=C:\Program Files\Wireshark
+
+  - name: Delete the software repository
+    win_file: 
+      path: '%UserProfile%\Desktop\repository'
+      state: absent

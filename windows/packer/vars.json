@@ -1,0 +1,18 @@
+{
+    "cpu_num": "2",
+    "disk_size": "15000",
+    "mem_size": "2048",
+    "os_iso_path": "[Datastore2] ISO's/win2016.ISO",
+    "vmtools_iso_path": "[Datastore2] ISO's/VMware-tools-windows-11.3.5-18557794.iso",
+    "vsphere_compute_cluster": "Cluster1",
+    "vsphere_datastore": "Datastore2",
+    "vsphere_dc_name": "Datacenter1",
+    "vsphere_folder": "Templates",
+    "vsphere_host": "10.230.30.102",
+    "vsphere_password": "L!nux123",
+    "vsphere_portgroup_name": "",
+    "vsphere_server": "10.230.30.105",
+    "vsphere_template_name": "Win2016-Template",
+    "vsphere_user": "administrator@vsphere.local",
+    "winadmin_password": "S3cret!"
+}

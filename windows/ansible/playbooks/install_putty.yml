@@ -1,0 +1,20 @@
+---
+- hosts: winhosts
+  gather_facts: no
+  tasks:
+  - name: Create a software repository directory
+    win_command: cmd.exe /c mkdir C:\repository
+
+  - name: Copy putty installer on remote Windows machine
+    win_copy:
+      src: ../software_repository/putty-64bit-0.74-installer.msi
+      dest: C:\repository\
+      remote_src: no
+
+  - name: Install Putty msi
+    win_package:
+      path: C:\repository\putty-64bit-0.74-installer.msi
+      state: present
+
+  - name: Delete the software repository
+    win_command: cmd.exe /c rmdir /S /Q C:\repository

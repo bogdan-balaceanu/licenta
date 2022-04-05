@@ -1,0 +1,20 @@
+---
+- hosts: winhosts
+  gather_facts: no
+  tasks:
+  - name: Create TOOLS directory on user's Desktop
+    win_file: 
+      path: '%UserProfile%\Desktop\TOOLS\'
+      state: directory
+
+  - name: Copy dnSpy 6.1.8 to TOOLS directory
+    win_copy:
+      src: ../software_repository/dnSpy-net-win64.zip
+      dest: '%UserProfile%\Desktop\TOOLS\'
+      remote_src: no
+
+  - name: Unzip dnSpy and delete the zip file
+    win_command: "{{ item }}"
+    with_items:
+      - cmd.exe /c 7z x %UserProfile%\Desktop\TOOLS\dnSpy-net-win64.zip -o%UserProfile%\Desktop\TOOLS\
+      - cmd.exe /c del %UserProfile%\Desktop\TOOLS\dnSpy-net-win64.zip

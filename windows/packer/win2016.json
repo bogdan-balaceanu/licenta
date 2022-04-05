@@ -1,0 +1,63 @@
+{
+  "builders": [
+    {
+      "CPUs": "{{user `cpu_num`}}",
+      "RAM": "{{user `mem_size`}}",
+      "RAM_reserve_all": true,
+      "cluster": "{{user `vsphere_compute_cluster`}}",
+      "communicator": "winrm",
+      "convert_to_template": "true",
+      "datacenter": "{{user `vsphere_dc_name`}}",
+      "datastore": "{{user `vsphere_datastore`}}",
+      "disk_controller_type": "lsilogic-sas",
+      "firmware": "bios",
+      "floppy_files": [
+        "setup/autounattend.xml",
+        "setup/vmtools.cmd",
+	"setup/set-static-ipv4.cmd",
+	"setup/enable-winrm.ps1",
+	"setup/configurewinrm.ps1"
+      ],
+      "folder": "{{user `vsphere_folder`}}",
+      "guest_os_type": "windows9Server64Guest",
+      "host": "{{user `vsphere_host`}}",
+      "insecure_connection": "true",
+      "iso_paths": [
+        "{{user `os_iso_path`}}",
+        "{{user `vmtools_iso_path`}}"
+      ],
+      "network_adapters": [
+        {
+          "network": "{{user `vsphere_portgroup_name`}}",
+          "network_card": "vmxnet3"
+        }
+      ],
+      "password": "{{user `vsphere_password`}}",
+      "storage": [
+        {
+          "disk_size": "{{user `disk_size`}}",
+          "disk_thin_provisioned": true
+        }
+      ],
+      "type": "vsphere-iso",
+      "username": "{{user `vsphere_user`}}",
+      "vcenter_server": "{{user `vsphere_server`}}",
+      "vm_name": "{{user `vsphere_template_name`}}",
+      "winrm_password":"{{user `winadmin_password`}}",
+      "winrm_username": "Administrator",
+      "winrm_timeout": "2h"
+    }
+  ],
+  "provisioners": [
+    {
+      "inline": [
+        "dir c:\\"
+      ],
+      "type": "windows-shell"
+    }
+  ],
+  "sensitive-variables": [
+    "vsphere_password",
+    "winadmin_password"
+  ]
+}

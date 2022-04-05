@@ -1,0 +1,29 @@
+---
+- hosts: winhosts
+  gather_facts: no
+  tasks:
+  - name: Create a software repository directory
+    win_file: 
+      path: C:\repository\
+      state: directory
+
+  - name: Copy 7zip MSI installer on remote Windows machine
+    win_copy:
+      src: ../software_repository/7z1900-x64.msi
+      dest: C:\repository\
+      remote_src: no
+
+  - name: Install 7zip MSI
+    win_package:
+      path: C:\repository\7z1900-x64.msi
+      state: present
+  
+
+  - name: Delete the software repository and update the Environment PATH
+    win_command: "{{ item }}"
+    with_items:
+      - cmd.exe /c setx /M path "%PATH%;C:\Program Files\7-Zip\\"
+      - cmd.exe /c rmdir /S /Q C:\repository
+    become: true
+    become_method: runas
+    become_user: Administrator

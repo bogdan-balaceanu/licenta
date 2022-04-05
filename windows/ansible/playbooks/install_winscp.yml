@@ -1,0 +1,25 @@
+---
+- hosts: winhosts
+  gather_facts: no
+  tasks:
+  - name: Create a software repository directory
+    win_file: 
+      path: '%UserProfile%\Desktop\repository'
+      state: directory
+
+  - name: Copy WinSCP installer on remote Windows machine
+    win_copy:
+      src: ../software_repository/winscp-5.17.9.zip
+      dest: '%UserProfile%\Desktop\repository\'
+      remote_src: no
+
+  - name: Install WinSCP
+    win_command: "{{ item }}"
+    with_items: 
+      - cmd.exe /c 7z x %UserProfile%\Desktop\repository\winscp-5.17.9.zip -o%UserProfile%\Desktop\repository\
+      - cmd.exe /c %UserProfile%\Desktop\repository\winscp-5.17.9\WinSCP-5.17.9-Setup.exe /VERYSILENT /ALLUSERS /NORESTART
+
+  - name: Delete the software repository
+    win_file: 
+      path: '%UserProfile%\Desktop\repository'
+      state: absent
