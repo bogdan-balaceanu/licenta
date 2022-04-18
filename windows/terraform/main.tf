@@ -97,11 +97,11 @@ resource "vsphere_virtual_machine" "vm" {
       }
       network_interface {
         ipv4_address    = "${var.ipv4_root}${var.ipv4_start + count.index}"
-        ipv4_netmask    = 24
-        dns_server_list = var.dns_server_list
-        dns_domain      = var.domain
+        ipv4_netmask    = "${var.ipv4_netmask}"
+        dns_server_list = [ "${var.dns_server_list}" ]
+        dns_domain      = "${var.domain}"
       }
-      ipv4_gateway = var.vmgateway
+      ipv4_gateway = "${var.vmgateway}"
       timeout = 30
 
     }

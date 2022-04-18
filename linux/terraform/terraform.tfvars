@@ -1,0 +1,22 @@
+vsphere_user = "administrator@vsphere.local"
+vsphere_password = "L!nux123"
+vsphere_server = "VCSA.licente.atm"
+virtual_datacenter_name = "Datacenter1"
+virtual_cluster_name = "Cluster1"
+datastore_cluster = "DatastoreCluster1"
+vm_folder = "VM_Folder"
+my_vnet_name = "VM Network"
+dns_server_2 = ""
+
+
+dns_server_1 = "{dns-server-1}"
+vm_count = "{vm-count}"
+ipv4_root = "{vm-ipv4-root}"
+ipv4_start = "{vm-ipv4-start}"
+ipv4_gateway = "{vm-ipv4-gateway}"
+ipv4_netmask = "{vm-ipv4-netmask}"
+vm_name = "{vm-name}"
+num_cpus = "{vm-cpu}"
+vm_memory = "{vm-ram}"
+vm_template_name = "{vm-template-name}"
+

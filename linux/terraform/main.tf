@@ -1,6 +1,47 @@
+provider "vsphere" {
+  user           = "${var.vsphere_user}"
+  password       = "${var.vsphere_password}"
+  vsphere_server = "${var.vsphere_server}"
+
+  # If you have a self-signed cert
+  allow_unverified_ssl = true
+}
+
+data "vsphere_virtual_machine" "base_template" {
+  name          = "${var.vm_template_name}"
+  datacenter_id = "${data.vsphere_datacenter.vsdc.id}"
+}
+
+data "vsphere_datacenter" "vsdc" {
+  name = "${var.virtual_datacenter_name}"
+}
+
+data "vsphere_compute_cluster" "vscc" {
+  name          = "${var.virtual_cluster_name}"
+  datacenter_id = "${data.vsphere_datacenter.vsdc.id}"
+}
+
+data "vsphere_datastore_cluster" "vsdsc" {
+  name          = "${var.datastore_cluster}"
+  datacenter_id = "${data.vsphere_datacenter.vsdc.id}"
+}
+
+# maybe you dont have a datastore cluster. make sure you change the instance settings too...
+#
+# data "vsphere_datastore" "vsds" {
+#   name          = "${var.datastore}"
+#   datacenter_id = "${data.vsphere_datacenter.vsdc.id}"
+# }
+
+data "vsphere_network" "vnet_my_thing" {
+  name          = "${var.my_vnet_name}"
+  datacenter_id = "${data.vsphere_datacenter.vsdc.id}"
+}
+
+
 resource "vsphere_virtual_machine" "my_vm" {
   count	         = "${var.vm_count}"
-  name                   = "my-vm-name-${count.index + 1}"
+  name                   = "${var.vm_name}-${count.index + 1}"
   annotation             = "My VM"
   folder                 = "/${var.vm_folder}"
   resource_pool_id       = "${data.vsphere_compute_cluster.vscc.resource_pool_id}"
@@ -11,8 +52,8 @@ resource "vsphere_virtual_machine" "my_vm" {
   enable_logging         = true
   boot_retry_delay       = 10
 
-  num_cpus  = 2
-  memory    = 4096
+  num_cpus  = "${var.num_cpus}"
+  memory    =  "${var.vm_memory}"
   guest_id  = "${data.vsphere_virtual_machine.base_template.guest_id}"
   scsi_type = "${data.vsphere_virtual_machine.base_template.scsi_type}"
 
@@ -37,15 +78,15 @@ resource "vsphere_virtual_machine" "my_vm" {
     customize {
       timeout     = 10
       linux_options {
-        host_name = "my-vm-name-${count.index + 1}"
+        host_name = "${var.vm_name}-${count.index + 1}"
 	domain = "licente.atm"
       }
       network_interface {
         ipv4_address = "${var.ipv4_root}${var.ipv4_start + count.index}"
-        ipv4_netmask = 24
+        ipv4_netmask = "${var.ipv4_netmask}"
       }
       dns_server_list = [ "${var.dns_server_1}" ]
-      ipv4_gateway    = "10.230.30.1"
+      ipv4_gateway    = "${var.ipv4_gateway}"
     }
   }
 }

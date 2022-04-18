@@ -1,51 +1,73 @@
 variable "vsphere_user" {
-  default = "administrator@vsphere.local"
+  type = string
 }
-
 variable "vsphere_password" {
-  default = "L!nux123"
+  type = string
 }
 
 variable "vsphere_server" {
-  default = "VCSA.licente.atm"
+  type = string
 }
 
 variable "virtual_datacenter_name" {
-  default = "Datacenter1"
+  type = string
 }
 
 variable "virtual_cluster_name" {
-  default = "Cluster1"
+  type = string
 }
 
 variable "datastore_cluster" {
-  default = "DatastoreCluster1"
+  type = string
 }
 
 variable "vm_folder" {
-  default = "VM_Folder"
+  type = string
 }
 
 variable "my_vnet_name" {
-  default = "VM Network"
+  type = string
 }
 
 
 variable "dns_server_1" {
-  default = "10.230.30.111"
+  type = string
 }
 
 variable "dns_server_2" {
-  default = ""
+  type = string
 }
 
 variable "vm_count" {
   type = number
-  default = 1
 }
 variable "ipv4_root" {
-  default = "10.230.30."
+  type = string
 }
 variable "ipv4_start" {
-  default = "40"
+  type = string
+}
+
+variable "ipv4_gateway" {
+  type = string
+}
+
+variable "ipv4_netmask" {
+  type = number
+}
+
+variable "vm_name" {
+  type = string
+}
+
+variable "num_cpus" {
+  type = number
+}
+
+variable "vm_memory" {
+  type = number
+}
+
+variable "vm_template_name" {
+  type = string
 }
