@@ -80,7 +80,7 @@ def generate_terraform_artefacts(config):
 def generate_ansible_host_file(config):
     if len(config['toolset']) == 0:
         print("No tools need to be installed")
-        quit()
+        quit() #sau exit
 
     operating_system = config['operating-system']
     if operating_system == "Linux":
