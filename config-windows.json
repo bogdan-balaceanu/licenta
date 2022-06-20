@@ -1,20 +1,27 @@
 {
-	"_comment": "the tools in toolset can be : vscode , notepad++ , putty , dnspy , winscp , wireshark",
-
-    	"operating-system":"Windows",
-
-    	"vm-count": "8",
-	"vm-name": "tishu",
-	"vm-template-name": "Win2016-Template", 
-	"vm-cpu": "2",
-	"vm-ram": "4096",
-
-    	"vm-ipv4-root": "10.230.30.",
-	"vm-ipv4-start": "40",
-	"vm-ipv4-netmask": "24",
-    	"vm-ipv4-gateway": "10.230.30.1",
-    	"dns-server-1":"10.230.30.111",
-	
-	"toolset": ["vscode","putty"]   
-
+    "_comment": "the tools in toolset must be : firefox, notepad++ , dnspy , putty , winscp, wireshark", 
+    "vsphere-info": 
+        {
+            "vsphere-vcenter": "10.230.30.105", 
+            "vsphere-user": "administrator@vsphere.local", 
+            "vsphere-password": "L!nux123"
+        }, 
+    "network-info": 
+        {
+                "vm-ipv4-root": "10.230.30.", 
+                "vm-ipv4-start": "40", 
+                "vm-ipv4-netmask": "24", 
+                "vm-ipv4-gateway": "10.230.30.1", 
+                "dns-server-1": "10.230.30.111"
+        }, 
+    "vm-info": 
+        {
+            "operating-system": "Windows", 
+            "vm-template-name": "Win2016-Template", 
+            "vm-count": "1", 
+            "vm-name": "vm-windows", 
+            "vm-cpu": "2", 
+            "vm-ram": "4096", 
+            "toolset": ["firefox", "putty"]
+        }
 }

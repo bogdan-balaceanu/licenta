@@ -10,7 +10,6 @@
     "vsphere_folder": "Templates",
     "vsphere_host": "10.230.30.102",
     "vsphere_password": "L!nux123",
-    "vsphere_portgroup_name": "",
     "vsphere_server": "10.230.30.105",
     "vsphere_template_name": "Win2016-Template",
     "vsphere_user": "administrator@vsphere.local",

@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: linuxvms
   become: yes
   tasks:
           - name: Install packages

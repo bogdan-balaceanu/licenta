@@ -13,7 +13,6 @@ provider "vsphere" {
   password       = var.vsphere_password
   vsphere_server = var.vsphere_server
 
-  # If you have a self-signed cert
   allow_unverified_ssl = true
 }
 
@@ -47,7 +46,7 @@ resource "vsphere_virtual_machine" "vm" {
   name             = "${var.vm-name}-${count.index + 1}"
   resource_pool_id = data.vsphere_compute_cluster.cluster.resource_pool_id
   datastore_id     = data.vsphere_datastore.datastore.id
-  # host_system_id = "${data.vsphere_datacenter.dc.id}"
+
 
   num_cpus                   = var.vm-cpu
   memory                     = var.vm-ram
@@ -81,19 +80,10 @@ resource "vsphere_virtual_machine" "vm" {
     customize {
       windows_options {
         computer_name = "${var.vm-name}-${count.index + 1}"
-        # workgroup     = "test"
         join_domain           = var.domain
         domain_admin_user     = var.domain_admin_user
         domain_admin_password = var.domain_admin_password
         admin_password        = var.local_adminpass
-        # product_key           = var.productkey
-        # organization_name     = var.orgname
-        # run_once_command_list = var.run_once
-        # auto_logon            = var.auto_logon
-        # auto_logon_count      = var.auto_logon_count
-        # time_zone             = var.time_zone
-        # product_key           = var.productkey
-        # full_name             = var.full_name
       }
       network_interface {
         ipv4_address    = "${var.ipv4_root}${var.ipv4_start + count.index}"

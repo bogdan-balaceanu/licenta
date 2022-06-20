@@ -3,7 +3,6 @@ provider "vsphere" {
   password       = "${var.vsphere_password}"
   vsphere_server = "${var.vsphere_server}"
 
-  # If you have a self-signed cert
   allow_unverified_ssl = true
 }
 
@@ -26,12 +25,6 @@ data "vsphere_datastore_cluster" "vsdsc" {
   datacenter_id = "${data.vsphere_datacenter.vsdc.id}"
 }
 
-# maybe you dont have a datastore cluster. make sure you change the instance settings too...
-#
-# data "vsphere_datastore" "vsds" {
-#   name          = "${var.datastore}"
-#   datacenter_id = "${data.vsphere_datacenter.vsdc.id}"
-# }
 
 data "vsphere_network" "vnet_my_thing" {
   name          = "${var.my_vnet_name}"

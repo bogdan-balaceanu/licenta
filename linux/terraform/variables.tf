@@ -23,6 +23,7 @@ variable "datastore_cluster" {
 
 variable "vm_folder" {
   type = string
+  description = "The name of the folder where the VM's will be created"
 }
 
 variable "my_vnet_name" {
@@ -34,9 +35,6 @@ variable "dns_server_1" {
   type = string
 }
 
-variable "dns_server_2" {
-  type = string
-}
 
 variable "vm_count" {
   type = number

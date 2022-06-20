@@ -1,0 +1,6 @@
+[linuxvms]
+{linux-vms}
+
+[linuxvms:vars]
+ansible_user=kopicloud
+ansible_password=kopicloud

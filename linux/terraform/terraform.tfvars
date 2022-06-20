@@ -6,8 +6,6 @@ virtual_cluster_name = "Cluster1"
 datastore_cluster = "DatastoreCluster1"
 vm_folder = "VM_Folder"
 my_vnet_name = "VM Network"
-dns_server_2 = ""
-
 
 dns_server_1 = "{dns-server-1}"
 vm_count = "{vm-count}"
@@ -19,4 +17,3 @@ vm_name = "{vm-name}"
 num_cpus = "{vm-cpu}"
 vm_memory = "{vm-ram}"
 vm_template_name = "{vm-template-name}"
-

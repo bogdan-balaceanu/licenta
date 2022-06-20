@@ -91,15 +91,13 @@
                 <Enabled>true</Enabled>
             </AutoLogon>
             <FirstLogonCommands>
+
 		<SynchronousCommand wcm:action="add">
                     <Order>1</Order>
                     <!-- Set static ip -->
                     <CommandLine>cmd.exe /c a:\set-static-ipv4.cmd</CommandLine>
-                    <RequiresUserInput>true</RequiresUserInput>
-	    </SynchronousCommand>
-
-
-     	
+                    <RequiresUserInput>true</RequiresUserInput>	
+  	    </SynchronousCommand>     	
                 
                 <SynchronousCommand wcm:action="add">
                     <Order>2</Order>
@@ -107,7 +105,6 @@
                     <CommandLine>powershell -ExecutionPolicy Bypass -File a:\enable-winrm.ps1</CommandLine>
                     <RequiresUserInput>true</RequiresUserInput>
 	    </SynchronousCommand>
-
 		
 		    <SynchronousCommand wcm:action="add">
                     <Order>3</Order>
@@ -116,8 +113,6 @@
                     <RequiresUserInput>true</RequiresUserInput>
             </SynchronousCommand>
 	  
-		
-
             </FirstLogonCommands>
             <UserAccounts>
                 <AdministratorPassword>

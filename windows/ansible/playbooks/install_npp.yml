@@ -1,5 +1,5 @@
 ---
-- hosts: winhosts
+- hosts: winvms
   gather_facts: no
   tasks:
   - name: Create a software repository directory on the user's Desktop

@@ -1,0 +1,25 @@
+---
+- hosts: winvms
+  gather_facts: no
+  tasks:
+  - name: Create a temporary directory
+    win_file: 
+      path: '%UserProfile%\Desktop\repository'
+      state: directory
+
+  - name: Copy Firefox installer on remote machines
+    win_copy:
+      src: ../software_repository/firefox.zip
+      dest: '%UserProfile%\Desktop\repository\'
+      remote_src: no
+
+  - name: Install Firefox
+    win_command: "{{ item }}"
+    with_items: 
+      - cmd.exe /c 7z x %UserProfile%\Desktop\repository\firefox.zip -o%UserProfile%\Desktop\repository\
+      - cmd.exe /c start %UserProfile%\Desktop\repository\firefox.exe /VERYSILENT /ALLUSERS /NORESTART
+
+  - name: Delete the temporary folder
+    win_file: 
+      path: '%UserProfile%\Desktop\repository'
+      state: absent

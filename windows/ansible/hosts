@@ -1,2 +1,9 @@
-[winhosts]
-10.230.30.40 ansible_user=Administrator ansible_password=S3cr3t! ansible_connection=winrm ansible_winrm_transport=basic ansible_winrm_server_cert_validation=ignore
+[winvms]
+10.230.30.40
+
+[winvms:vars]
+ansible_user=Administrator
+ansible_password=S3cr3t!
+ansible_connection=winrm
+ansible_winrm_transport=basic
+ansible_winrm_server_cert_validation=ignore
