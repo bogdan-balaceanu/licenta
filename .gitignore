@@ -33,3 +33,5 @@ terraform.rc
 
 *.retry
 
+plan
+.terraform.lock.hcl
