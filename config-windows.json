@@ -1,5 +1,6 @@
 {
     "_comment": "the tools in toolset must be : firefox, notepad++ , dnspy , putty , winscp, wireshark", 
+    "unique-id":"mapn1",
     "vsphere-info": 
         {
             "vsphere-vcenter": "10.230.30.105", 
@@ -22,6 +23,6 @@
             "vm-name": "vm-windows", 
             "vm-cpu": "2", 
             "vm-ram": "4096", 
-            "toolset": ["firefox", "putty"]
+            "toolset": []
         }
 }
